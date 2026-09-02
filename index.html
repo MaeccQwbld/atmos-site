@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>АТМОС — студия дизайна интерьеров</title>
+  <meta name="description" content="Студия дизайна интерьеров АТМОС.">
+  <meta name="theme-color" content="#FAF7F2">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="АТМОС — студия дизайна интерьеров">
+  <meta property="og:description" content="Студия дизайна интерьеров АТМОС.">
+  <meta property="og:image" content="images/project-01-vitrazh.jpg">
+  <meta property="og:locale" content="ru_RU">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23B28F63'/><text x='16' y='22' font-family='serif' font-size='17' fill='%23FAF7F2' text-anchor='middle'>А</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+  <script>document.documentElement.className+=" js"</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-preloading">
+
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__inner">
+    <div class="preloader__slot">
+      <svg viewBox="0 0 32 32" width="36" height="36" fill="none">
+        <rect x="2" y="2" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <circle cx="16" cy="16" r="5" fill="currentColor" opacity="0.3"/>
+      </svg>
+    </div>
+    <span class="preloader__name">АТМОС</span>
+    <div class="preloader__bar">
+      <div class="preloader__progress" id="preloaderProgress"></div>
+    </div>
+    <span class="preloader__percent" id="preloaderPercent">0%</span>
+  </div>
+</div>
+
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="header" id="header">
+  <div class="shell header__inner">
+    <a class="logo" href="#top" aria-label="АТМОС — перейти к началу страницы">
+      <!-- СЛОТ ДЛЯ ЛОГОТИПА -->
+      <span class="logo__slot" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+          <rect x="2" y="2" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <circle cx="16" cy="16" r="5" fill="currentColor" opacity="0.3"/>
+        </svg>
+      </span>
+      <span class="logo__name">АТМОС</span>
+    </a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a class="nav__link" href="#services">Услуги</a>
+      <a class="nav__link" href="#about">О нас</a>
+      <a class="nav__link" href="#portfolio">Портфолио</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="phone-link" href="tel:+79236433850">+7 (923) 643-38-50</a>
+      <div class="messenger-group">
+        <a class="msg-btn msg-btn--max" href="#" data-ph aria-label="MAX">
+          <span>MAX</span>
+        </a>
+        <a class="msg-btn msg-btn--tg" href="#" data-ph aria-label="Telegram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M21.7 3.4 2.9 10.7c-1.1.4-1.1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.2-.5-1.8-1.4-1.4Zm-4.1 3.6-8.1 7.2-.3 3.4-1.7-5.2 10.1-5.4Z"/>
+          </svg>
+        </a>
+      </div>
+      <button class="burger-btn" id="burgerBtn" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer__backdrop" id="drawerBackdrop"></div>
+  <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Мобильное меню">
+    <div class="drawer__head">
+      <span class="logo__name">АТМОС</span>
+      <button class="drawer__close" id="drawerCloseBtn" type="button" aria-label="Закрыть меню">&times;</button>
+    </div>
+    <nav class="drawer__nav" aria-label="Навигация в меню">
+      <a class="drawer__link" href="#services">Услуги</a>
+      <a class="drawer__link" href="#process">Этапы работы</a>
+      <a class="drawer__link" href="#portfolio">Портфолио</a>
+      <a class="drawer__link" href="#about">О нас</a>
+      <a class="drawer__link" href="#faq">Частые вопросы</a>
+      <a class="drawer__link" href="#contacts">Контакты</a>
+    </nav>
+    <div class="drawer__foot">
+      <a class="drawer__phone" href="tel:+79236433850">+7 (923) 643-38-50</a>
+      <div class="messenger-group">
+        <a class="msg-btn msg-btn--max" href="#" data-ph aria-label="MAX">
+          <span>MAX</span>
+        </a>
+        <a class="msg-btn msg-btn--tg" href="#" data-ph aria-label="Telegram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M21.7 3.4 2.9 10.7c-1.1.4-1.1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.2-.5-1.8-1.4-1.4Zm-4.1 3.6-8.1 7.2-.3 3.4-1.7-5.2 10.1-5.4Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <section class="hero-section" id="top">
+    <div class="shell hero-grid">
+      <div class="hero-text">
+        <h1 class="hero-title" data-ph>Текст-заполнитель для главного заголовка страницы</h1>
+        <p class="hero-subtitle" data-ph>Текст-заполнитель. Подзаголовок первого экрана: два-три предложения, которые заказчик заменит на своё позиционирование. Объём подобран под макет.</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#contacts">Обсудить проект</a>
+          <a class="btn btn--secondary" href="#portfolio">Смотреть портфолио</a>
+        </div>
+        <dl class="figures-grid">
+          <div class="figures-item">
+            <dt class="figures-val">—</dt>
+            <dd class="figures-label" data-ph>Подпись показателя 01</dd>
+          </div>
+          <div class="figures-item">
+            <dt class="figures-val">—</dt>
+            <dd class="figures-label" data-ph>Подпись показателя 02</dd>
+          </div>
+          <div class="figures-item">
+            <dt class="figures-val">—</dt>
+            <dd class="figures-label" data-ph>Подпись показателя 03</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-media">
+        <figure class="hero-figure">
+          <img decoding="async" src="images/project-01-vitrazh.jpg" alt="Гостиная с витражным панно" width="1271" height="841" fetchpriority="high">
+          <figcaption class="hero-figure__caption">
+            <span class="hero-figure__title" data-ph>Название проекта</span>
+            <span class="hero-figure__meta">— м² · —</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="wood-strip" aria-hidden="true"></div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Услуги</span>
+        <h2 class="section-title">Услуги</h2>
+        <p class="section-lead" data-ph>Текст-заполнитель. Вводный абзац к разделу — заказчик заменит его своим описанием.</p>
+      </div>
+
+      <div class="cards-grid cards-grid--3">
+        <article class="card reveal">
+          <span class="card__num">01</span>
+          <h3 class="card__title" data-ph>Название услуги 01</h3>
+          <p class="card__desc" data-ph>Текст-заполнитель. Более длинный вариант абзаца: нужен, чтобы увидеть, как карточка тянется по высоте и не ломает соседей в ряду.</p>
+          <div class="card__footer">
+            <span class="card__tag">Срок: —</span>
+            <span class="card__price">—</span>
+          </div>
+        </article>
+
+        <article class="card card--accent reveal">
+          <span class="card__num">02</span>
+          <h3 class="card__title" data-ph>Название услуги 02</h3>
+          <p class="card__desc" data-ph>Текст-заполнитель. Абзац показывает, как ляжет реальный текст в этой колонке. Слова подобраны без смысла.</p>
+          <div class="card__footer">
+            <span class="card__tag">Срок: —</span>
+            <span class="card__price">—</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__num">03</span>
+          <h3 class="card__title" data-ph>Название услуги 03</h3>
+          <p class="card__desc" data-ph>Текст-заполнитель. Этот фрагмент намеренно длиннее остальных, чтобы стало видно поведение сетки при неравномерных по объёму описаниях.</p>
+          <div class="card__footer">
+            <span class="card__tag">Срок: —</span>
+            <span class="card__price">—</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__num">04</span>
+          <h3 class="card__title" data-ph>Название услуги 04</h3>
+          <p class="card__desc" data-ph>Текст-заполнитель. Короткое описание для этого блока.</p>
+          <div class="card__footer">
+            <span class="card__tag">Срок: —</span>
+            <span class="card__price">—</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__num">05</span>
+          <h3 class="card__title" data-ph>Название услуги 05</h3>
+          <p class="card__desc" data-ph>Текст-заполнитель. Здесь будет содержание блока. Длина строк и переносы примерно соответствуют будущему тексту.</p>
+          <div class="card__footer">
+            <span class="card__tag">Срок: —</span>
+            <span class="card__price">—</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__num">06</span>
+          <h3 class="card__title" data-ph>Название услуги 06</h3>
+          <p class="card__desc" data-ph>Текст-заполнитель. Объём подобран под макет, чтобы проверить вёрстку на описании средней длины.</p>
+          <div class="card__footer">
+            <span class="card__tag">Срок: —</span>
+            <span class="card__price">—</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wood-strip" aria-hidden="true"></div>
+
+  <section class="section section--tint" id="process">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Этапы</span>
+        <h2 class="section-title">Этапы работы</h2>
+        <p class="section-lead" data-ph>Текст-заполнитель. Подводка к разделу, объём подобран под макет и смысла не несёт.</p>
+      </div>
+
+      <ol class="steps-list">
+        <li class="step-item reveal">
+          <span class="step-item__num">01</span>
+          <div class="step-item__content">
+            <h3 class="step-item__title" data-ph>Название этапа 01</h3>
+            <p class="step-item__desc" data-ph>Текст-заполнитель. Абзац показывает, как ляжет реальный текст в этой колонке. Слова подобраны без смысла.</p>
+          </div>
+          <span class="step-item__time">—</span>
+        </li>
+
+        <li class="step-item reveal">
+          <span class="step-item__num">02</span>
+          <div class="step-item__content">
+            <h3 class="step-item__title" data-ph>Название этапа 02</h3>
+            <p class="step-item__desc" data-ph>Текст-заполнитель. Объём подобран под макет, чтобы проверить вёрстку на описании средней длины.</p>
+          </div>
+          <span class="step-item__time">—</span>
+        </li>
+
+        <li class="step-item reveal">
+          <span class="step-item__num">03</span>
+          <div class="step-item__content">
+            <h3 class="step-item__title" data-ph>Название этапа 03</h3>
+            <p class="step-item__desc" data-ph>Текст-заполнитель. Две-три строки условного текста вместо будущего описания.</p>
+          </div>
+          <span class="step-item__time">—</span>
+        </li>
+
+        <li class="step-item reveal">
+          <span class="step-item__num">04</span>
+          <div class="step-item__content">
+            <h3 class="step-item__title" data-ph>Название этапа 04</h3>
+            <p class="step-item__desc" data-ph>Текст-заполнитель. Этот фрагмент намеренно длиннее остальных, чтобы стало видно поведение сетки при неравномерных по объёму описаниях.</p>
+          </div>
+          <span class="step-item__time">—</span>
+        </li>
+
+        <li class="step-item reveal">
+          <span class="step-item__num">05</span>
+          <div class="step-item__content">
+            <h3 class="step-item__title" data-ph>Название этапа 05</h3>
+            <p class="step-item__desc" data-ph>Текст-заполнитель. Здесь разместится содержание, которое подготовит заказчик.</p>
+          </div>
+          <span class="step-item__time">—</span>
+        </li>
+
+        <li class="step-item reveal">
+          <span class="step-item__num">06</span>
+          <div class="step-item__content">
+            <h3 class="step-item__title" data-ph>Название этапа 06</h3>
+            <p class="step-item__desc" data-ph>Текст-заполнитель. Короткое описание для этого блока.</p>
+          </div>
+          <span class="step-item__time">—</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="wood-strip" aria-hidden="true"></div>
+
+  <section class="section" id="portfolio">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Портфолио</span>
+        <h2 class="section-title">Портфолио</h2>
+        <p class="section-lead" data-ph>Текст-заполнитель. Здесь будет вступление к разделу: пара строк, задающих контекст.</p>
+      </div>
+
+      <div class="portfolio-grid">
+        <figure class="work-card work-card--wide reveal" data-full="images/project-01-vitrazh.jpg">
+          <div class="work-card__media">
+            <img decoding="async" src="images/project-01-vitrazh.jpg" alt="Гостиная с витражным панно" loading="lazy" width="1271" height="841">
+          </div>
+          <figcaption class="work-card__caption">
+            <h3 class="work-card__title" data-ph>Название проекта 01</h3>
+            <span class="work-card__meta">— м² · —</span>
+          </figcaption>
+        </figure>
+
+        <figure class="work-card reveal" data-full="images/project-02-restaurant.jpg">
+          <div class="work-card__media">
+            <img decoding="async" src="images/project-02-restaurant.jpg" alt="Зал ресторана" loading="lazy" width="1280" height="720">
+          </div>
+          <figcaption class="work-card__caption">
+            <h3 class="work-card__title" data-ph>Название проекта 02</h3>
+            <span class="work-card__meta">— м² · —</span>
+          </figcaption>
+        </figure>
+
+        <figure class="work-card reveal" data-full="images/project-03-kitchen.jpg">
+          <div class="work-card__media">
+            <img decoding="async" src="images/project-03-kitchen.jpg" alt="Кухня-столовая" loading="lazy" width="1280" height="710">
+          </div>
+          <figcaption class="work-card__caption">
+            <h3 class="work-card__title" data-ph>Название проекта 03</h3>
+            <span class="work-card__meta">— м² · —</span>
+          </figcaption>
+        </figure>
+
+        <figure class="work-card reveal" data-full="images/project-04-ceramics.jpg">
+          <div class="work-card__media">
+            <img decoding="async" src="images/project-04-ceramics.jpg" alt="Кухонный фартук с керамическим декором" loading="lazy" width="1134" height="946">
+          </div>
+          <figcaption class="work-card__caption">
+            <h3 class="work-card__title" data-ph>Название проекта 04</h3>
+            <span class="work-card__meta">— м² · —</span>
+          </figcaption>
+        </figure>
+
+        <figure class="work-card reveal" data-full="images/project-05-barelief.jpg">
+          <div class="work-card__media">
+            <img decoding="async" src="images/project-05-barelief.jpg" alt="Зона отдыха с гипсовым барельефом" loading="lazy" width="1271" height="841">
+          </div>
+          <figcaption class="work-card__caption">
+            <h3 class="work-card__title" data-ph>Название проекта 05</h3>
+            <span class="work-card__meta">— м² · —</span>
+          </figcaption>
+        </figure>
+
+        <figure class="work-card work-card--gallery work-card--wide reveal" id="seasideCard" data-full="images/project-06-seaside-kitchen.jpg">
+          <div class="work-card__media work-card__media--slider">
+            <img decoding="async" id="seasideMainImg" src="images/project-06-seaside-kitchen.jpg" alt="Кухня-остров с видом на море" loading="lazy" width="1280" height="720">
+            <div class="slider-controls" aria-label="Переключение ракурсов проекта">
+              <button class="slider-arrow slider-arrow--prev" id="seasidePrev" type="button" aria-label="Предыдущее фото">&#8592;</button>
+              <span class="slider-counter" id="seasideCounter">1 / 4</span>
+              <button class="slider-arrow slider-arrow--next" id="seasideNext" type="button" aria-label="Следующее фото">&#8594;</button>
+            </div>
+          </div>
+          <div class="gallery-thumbs" id="seasideThumbs">
+            <button class="thumb-btn is-active" type="button" data-src="images/project-06-seaside-kitchen.jpg" data-alt="Кухня-остров с видом на море" aria-label="Ракурс 1: Кухня-остров с видом на море">
+              <img decoding="async" src="images/project-06-seaside-kitchen.jpg" alt="Кухня-остров с видом на море" width="120" height="80" loading="lazy">
+            </button>
+            <button class="thumb-btn" type="button" data-src="images/project-06-seaside-living.jpg" data-alt="Гостиная с синими французскими дверями" aria-label="Ракурс 2: Гостиная с синими французскими дверями">
+              <img decoding="async" src="images/project-06-seaside-living.jpg" alt="Гостиная с синими французскими дверями" width="120" height="80" loading="lazy">
+            </button>
+            <button class="thumb-btn" type="button" data-src="images/project-06-seaside-dining.jpg" data-alt="Классическая кухня с плиткой-пэчворк" aria-label="Ракурс 3: Классическая кухня с плиткой-пэчворк">
+              <img decoding="async" src="images/project-06-seaside-dining.jpg" alt="Классическая кухня с плиткой-пэчворк" width="120" height="80" loading="lazy">
+            </button>
+            <button class="thumb-btn" type="button" data-src="images/project-06-seaside-lounge.jpg" data-alt="ТВ-зона с арочной дверью" aria-label="Ракурс 4: ТВ-зона с арочной дверью">
+              <img decoding="async" src="images/project-06-seaside-lounge.jpg" alt="ТВ-зона с арочной дверью" width="120" height="80" loading="lazy">
+            </button>
+          </div>
+          <figcaption class="work-card__caption">
+            <h3 class="work-card__title" data-ph>Название проекта 06</h3>
+            <span class="work-card__meta">— м² · —</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="wood-strip" aria-hidden="true"></div>
+
+  <section class="section section--tint" id="about">
+    <div class="shell about-layout">
+      <div class="about-lead-col reveal">
+        <span class="section-eyebrow">О нас</span>
+        <h2 class="section-title">О нас</h2>
+        <div class="about-paragraphs">
+          <p class="about-text" data-ph>Текст-заполнитель. Первый абзац рассказа о студии. Объём подобран под макет, содержание подлежит замене.</p>
+          <p class="about-text" data-ph>Текст-заполнитель. Второй абзац заметно длиннее первого — так видно, как колонка держит неравномерный текст и где встают переносы строк.</p>
+          <p class="about-text" data-ph>Текст-заполнитель. Короткий третий абзац.</p>
+        </div>
+      </div>
+
+      <div class="principles-grid reveal">
+        <article class="principle-card">
+          <span class="principle-card__num">01</span>
+          <h3 class="principle-card__title" data-ph>Заголовок принципа 01</h3>
+          <p class="principle-card__desc" data-ph>Текст-заполнитель. Здесь будет содержание блока. Длина строк и переносы примерно соответствуют будущему тексту.</p>
+        </article>
+
+        <article class="principle-card">
+          <span class="principle-card__num">02</span>
+          <h3 class="principle-card__title" data-ph>Заголовок принципа 02</h3>
+          <p class="principle-card__desc" data-ph>Текст-заполнитель. Короткое описание для этого блока.</p>
+        </article>
+
+        <article class="principle-card">
+          <span class="principle-card__num">03</span>
+          <h3 class="principle-card__title" data-ph>Заголовок принципа 03</h3>
+          <p class="principle-card__desc" data-ph>Текст-заполнитель. Более длинный вариант абзаца: нужен, чтобы увидеть, как карточка тянется по высоте и не ломает соседей в ряду.</p>
+        </article>
+
+        <article class="principle-card">
+          <span class="principle-card__num">04</span>
+          <h3 class="principle-card__title" data-ph>Заголовок принципа 04</h3>
+          <p class="principle-card__desc" data-ph>Текст-заполнитель. Строка средней длины, заменяется на текст заказчика.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wood-strip" aria-hidden="true"></div>
+
+  <section class="section" id="faq">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Частые вопросы</span>
+        <h2 class="section-title">Частые вопросы</h2>
+        <p class="section-lead" data-ph>Текст-заполнитель. Короткая подводка к разделу, подлежит замене.</p>
+      </div>
+
+      <div class="accordion" id="faqAccordion">
+        <div class="acc-item">
+          <h3 class="acc-item__head">
+            <button class="acc-item__trigger" type="button" aria-expanded="false" aria-controls="faqPanel1" id="faqBtn1">
+              <span class="acc-item__q">Как рассчитывается стоимость дизайн-проекта?</span>
+              <span class="acc-item__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="acc-item__panel" id="faqPanel1" role="region" aria-labelledby="faqBtn1">
+            <div class="acc-item__body">
+              <p data-ph>Текст-заполнитель. Здесь будет ответ на вопрос о стоимости дизайн-проекта, предоставленный заказчиком. Содержание не несёт смысла и подлежит замене.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <h3 class="acc-item__head">
+            <button class="acc-item__trigger" type="button" aria-expanded="false" aria-controls="faqPanel2" id="faqBtn2">
+              <span class="acc-item__q">Сколько времени занимает разработка проекта?</span>
+              <span class="acc-item__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="acc-item__panel" id="faqPanel2" role="region" aria-labelledby="faqBtn2">
+            <div class="acc-item__body">
+              <p data-ph>Текст-заполнитель. Здесь будет ответ на вопрос о сроках разработки дизайн-проекта, предоставленный заказчиком. Содержание не несёт смысла и подлежит замене.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <h3 class="acc-item__head">
+            <button class="acc-item__trigger" type="button" aria-expanded="false" aria-controls="faqPanel3" id="faqBtn3">
+              <span class="acc-item__q">Как устроен порядок оплаты?</span>
+              <span class="acc-item__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="acc-item__panel" id="faqPanel3" role="region" aria-labelledby="faqBtn3">
+            <div class="acc-item__body">
+              <p data-ph>Текст-заполнитель. Здесь будет ответ на вопрос о порядке оплаты и этапах расчёта, предоставленный заказчиком. Содержание не несёт смысла и подлежит замене.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <h3 class="acc-item__head">
+            <button class="acc-item__trigger" type="button" aria-expanded="false" aria-controls="faqPanel4" id="faqBtn4">
+              <span class="acc-item__q">Возможна ли работа с объектами в других городах?</span>
+              <span class="acc-item__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="acc-item__panel" id="faqPanel4" role="region" aria-labelledby="faqBtn4">
+            <div class="acc-item__body">
+              <p data-ph>Текст-заполнитель. Здесь будет информация о формате удалённого проектирования и выездах на объекты.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <h3 class="acc-item__head">
+            <button class="acc-item__trigger" type="button" aria-expanded="false" aria-controls="faqPanel5" id="faqBtn5">
+              <span class="acc-item__q">Что входит в состав проектной документации?</span>
+              <span class="acc-item__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="acc-item__panel" id="faqPanel5" role="region" aria-labelledby="faqBtn5">
+            <div class="acc-item__body">
+              <p data-ph>Текст-заполнитель. Здесь будет перечень чертежей, ведомостей и визуализаций, входящих в состав альбома проекта.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <h3 class="acc-item__head">
+            <button class="acc-item__trigger" type="button" aria-expanded="false" aria-controls="faqPanel6" id="faqBtn6">
+              <span class="acc-item__q">Осуществляется ли авторский надзор и комплектация?</span>
+              <span class="acc-item__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="acc-item__panel" id="faqPanel6" role="region" aria-labelledby="faqBtn6">
+            <div class="acc-item__body">
+              <p data-ph>Текст-заполнитель. Здесь будут описаны условия авторского надзора, закупки материалов и сопровождения строительных работ.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wood-strip" aria-hidden="true"></div>
+
+  <section class="section section--tint" id="contacts">
+    <div class="shell">
+      <div class="contacts-grid">
+        <div class="contacts-info reveal">
+          <span class="section-eyebrow">Контакты</span>
+          <h2 class="section-title">Контакты</h2>
+          <p class="contacts-lead" data-ph>Текст-заполнитель. Абзац перед формой заявки, содержание предоставит заказчик.</p>
+
+          <div class="contacts-details">
+            <div class="contacts-detail-item">
+              <span class="contacts-detail-label">Телефон</span>
+              <a class="contacts-detail-val" href="tel:+79236433850">+7 (923) 643-38-50</a>
+            </div>
+            <div class="contacts-detail-item">
+              <span class="contacts-detail-label">Мессенджеры</span>
+              <div class="messenger-group">
+                <a class="msg-btn msg-btn--max" href="#" data-ph aria-label="MAX">
+                  <span>MAX</span>
+                </a>
+                <a class="msg-btn msg-btn--tg" href="#" data-ph aria-label="Telegram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                    <path d="M21.7 3.4 2.9 10.7c-1.1.4-1.1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.2-.5-1.8-1.4-1.4Zm-4.1 3.6-8.1 7.2-.3 3.4-1.7-5.2 10.1-5.4Z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="projectForm" novalidate>
+          <div class="form-field">
+            <label class="form-label" for="fName">Имя</label>
+            <input class="form-input" type="text" id="fName" name="name" placeholder="Ваше имя" autocomplete="name" required>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="fPhone">Контакт для связи</label>
+            <input class="form-input" type="text" id="fPhone" name="phone" placeholder="Телефон или ник в мессенджере" autocomplete="tel" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="fType">Тип объекта</label>
+              <select class="form-input" id="fType" name="type">
+                <option value="flat">Квартира</option>
+                <option value="house">Загородный дом</option>
+                <option value="commercial">Коммерческое помещение</option>
+                <option value="other">Другое</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="fArea">Площадь, м²</label>
+              <input class="form-input" type="number" id="fArea" name="area" placeholder="Площадь" min="1" max="5000" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="fComment">Комментарий</label>
+            <textarea class="form-input" id="fComment" name="comment" rows="3" placeholder="Пожелания к проекту"></textarea>
+          </div>
+
+          <label class="consent-label" id="consentLabel">
+            <input class="consent-checkbox" type="checkbox" id="fConsent" name="consent" required>
+            <span>Согласен на обработку персональных данных и с <a href="#" data-ph>политикой конфиденциальности</a></span>
+          </label>
+
+          <button class="btn btn--primary btn--block" type="submit">Отправить заявку</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wood-strip" aria-hidden="true"></div>
+  <div class="shell footer__grid">
+    <div class="footer__brand">
+      <span class="logo__name logo__name--lg">АТМОС</span>
+      <p class="footer__desc" data-ph>Текст-заполнитель. Короткое описание студии в подвале сайта.</p>
+    </div>
+
+    <nav class="footer__col" aria-label="Навигация в подвале">
+      <span class="footer__heading">Разделы</span>
+      <a class="footer__link" href="#services">Услуги</a>
+      <a class="footer__link" href="#process">Этапы работы</a>
+      <a class="footer__link" href="#portfolio">Портфолио</a>
+      <a class="footer__link" href="#about">О нас</a>
+      <a class="footer__link" href="#faq">Частые вопросы</a>
+      <a class="footer__link" href="#contacts">Контакты</a>
+    </nav>
+
+    <div class="footer__col">
+      <span class="footer__heading">Связь</span>
+      <a class="footer__link" href="tel:+79236433850">+7 (923) 643-38-50</a>
+      <a class="footer__link" href="#" data-ph>—</a>
+      <div class="footer__messengers">
+        <a class="footer__link" href="#" data-ph aria-label="MAX">MAX</a>
+        <a class="footer__link" href="#" data-ph aria-label="Telegram">Telegram</a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <span class="footer__heading">Документы</span>
+      <a class="footer__link" href="#" data-ph>—</a>
+      <a class="footer__link" href="#" data-ph>—</a>
+    </div>
+  </div>
+
+  <div class="shell footer__bottom">
+    <span>© 2026 АТМОС</span>
+    <a class="footer__phone-bottom" href="tel:+79236433850">+7 (923) 643-38-50</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр изображения">
+  <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
+  <div class="lightbox__content">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Закрыть">&times;</button>
+    <img decoding="async" class="lightbox__img" id="lightboxImg" src="images/project-01-vitrazh.jpg" alt="">
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<button class="ph-toggle-btn" id="phToggleBtn" type="button" title="Переключить подсветку заглушек (Alt+P)" aria-label="Переключить подсветку заглушек">
+  <span class="ph-toggle-btn__dot"></span>
+  <span class="ph-toggle-btn__text">Режим заглушек</span>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
