@@ -12,6 +12,10 @@
   --wood-dark: #7C5C35;
   --wood-text: #735531;
   --wood-light: #D4B995;
+  --wood-deep: #3A2B1C;
+  --on-deep-title: #F7F1E6;
+  --on-deep-text: #CBBBA3;
+  --on-deep-accent: #D6B486;
   --shadow-sm: 0 4px 14px rgba(34, 30, 27, 0.04);
   --shadow-md: 0 16px 36px rgba(34, 30, 27, 0.08);
   --shadow-lg: 0 28px 70px rgba(34, 30, 27, 0.14);
@@ -222,6 +226,78 @@ ul, ol {
   background-image: image-set(url('images/wood-texture.webp') type('image/webp'), url('images/wood-texture.jpg') type('image/jpeg'));
   background-size: 480px auto;
   background-repeat: repeat;
+}
+
+.section--dark {
+  background-color: var(--wood-deep);
+  background-image: url('images/wood-texture-dark.jpg');
+  background-image: image-set(url('images/wood-texture-dark.webp') type('image/webp'), url('images/wood-texture-dark.jpg') type('image/jpeg'));
+  background-size: 480px auto;
+  background-repeat: repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.section--dark::before,
+.section--dark::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 130px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section--dark::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--edge-top, transparent), transparent);
+}
+
+.section--dark::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--edge-bottom, transparent), transparent);
+}
+
+.section--dark > .shell {
+  position: relative;
+  z-index: 1;
+}
+
+#process {
+  --edge-top: var(--sand);
+  --edge-bottom: var(--cream);
+}
+
+#contacts {
+  --edge-top: var(--cream);
+  --edge-bottom: var(--white);
+}
+
+.section--dark .section-title {
+  color: var(--on-deep-title);
+}
+
+.section--dark .section-lead,
+.section--dark .contacts-lead {
+  color: var(--on-deep-text);
+}
+
+.section--dark .section-eyebrow {
+  color: var(--on-deep-accent);
+}
+
+.section--dark .section-eyebrow::before {
+  background-color: var(--on-deep-accent);
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  padding-top: 28px;
+  font-size: 0.82rem;
+  color: var(--muted);
 }
 
 .wood-strip {
