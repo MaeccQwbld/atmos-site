@@ -24,8 +24,7 @@ function initTheme() {
     saved = null;
   }
 
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  let dark = saved ? saved === 'dark' : systemDark;
+  let dark = saved === 'dark';
 
   const apply = () => {
     if (dark) {
