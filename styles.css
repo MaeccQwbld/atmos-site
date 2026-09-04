@@ -238,40 +238,9 @@ ul, ol {
   overflow: hidden;
 }
 
-.section--dark::before,
-.section--dark::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 130px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.section--dark::before {
-  top: 0;
-  background: linear-gradient(to bottom, var(--edge-top, transparent), transparent);
-}
-
-.section--dark::after {
-  bottom: 0;
-  background: linear-gradient(to top, var(--edge-bottom, transparent), transparent);
-}
-
 .section--dark > .shell {
   position: relative;
   z-index: 1;
-}
-
-#process {
-  --edge-top: var(--sand);
-  --edge-bottom: var(--cream);
-}
-
-#contacts {
-  --edge-top: var(--cream);
-  --edge-bottom: var(--white);
 }
 
 .section--dark .section-title {
@@ -1673,39 +1642,48 @@ body.show-ph .hero-figure__meta {
   opacity: 1;
 }
 
-html.js .reveal {
+html.anim-on .reveal {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.85s var(--ease-out-expo), transform 0.85s var(--ease-out-expo);
 }
 
-html.js .reveal.is-in {
+html.anim-on .reveal.is-in {
   opacity: 1;
   transform: none;
 }
 
-html.js .header,
-html.js .hero-text > *,
-html.js .hero-media {
+html.anim-on .header,
+html.anim-on .hero-text > *,
+html.anim-on .hero-media {
   opacity: 0;
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
 }
 
-body.is-ready .header {
-  animation: dropIn 0.85s var(--ease-out-expo) both;
+html.anim-on .header {
+  transform: translateY(-100%);
 }
 
-body.is-ready .hero-text > * {
-  animation: riseIn 1s var(--ease-out-expo) both;
+html.anim-on .hero-text > * {
+  transform: translateY(26px);
 }
 
-body.is-ready .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
-body.is-ready .hero-text > *:nth-child(2) { animation-delay: 0.18s; }
-body.is-ready .hero-text > *:nth-child(3) { animation-delay: 0.26s; }
-body.is-ready .hero-text > *:nth-child(4) { animation-delay: 0.34s; }
-
-body.is-ready .hero-media {
-  animation: mediaIn 1.15s var(--ease-out-expo) 0.16s both;
+html.anim-on .hero-media {
+  transform: translateY(32px) scale(0.965);
 }
+
+html.anim-on body.is-ready .header,
+html.anim-on body.is-ready .hero-text > *,
+html.anim-on body.is-ready .hero-media {
+  opacity: 1;
+  transform: none;
+}
+
+html.anim-on body.is-ready .hero-text > *:nth-child(1) { transition-delay: 0.10s; }
+html.anim-on body.is-ready .hero-text > *:nth-child(2) { transition-delay: 0.18s; }
+html.anim-on body.is-ready .hero-text > *:nth-child(3) { transition-delay: 0.26s; }
+html.anim-on body.is-ready .hero-text > *:nth-child(4) { transition-delay: 0.34s; }
+html.anim-on body.is-ready .hero-media { transition-delay: 0.16s; }
 
 @keyframes dropIn {
   from { opacity: 0; transform: translateY(-100%); }
@@ -1888,15 +1866,12 @@ body.is-ready .hero-media {
     transition-duration: 0.35s !important;
   }
 
-  html.js .reveal,
-  html.js .reveal.is-in {
+  html.anim-on .reveal,
+  html.anim-on .reveal.is-in,
+  html.anim-on .header,
+  html.anim-on .hero-text > *,
+  html.anim-on .hero-media {
     transform: none !important;
-  }
-
-  html.js .header,
-  html.js .hero-text > *,
-  html.js .hero-media {
-    animation-name: softFade !important;
   }
 
   .preloader__slot {

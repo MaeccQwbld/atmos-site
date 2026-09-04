@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initSafetyNet();
   initPreloader();
   initHeader();
   initDrawer();
@@ -9,6 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
   initForm();
   initPhToggle();
 });
+
+function initSafetyNet() {
+  const root = document.documentElement;
+  if ('IntersectionObserver' in window) {
+    root.classList.add('anim-on');
+  }
+
+  const showEverything = () => {
+    document.body.classList.remove('is-preloading');
+    document.body.classList.add('is-ready');
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.classList.add('is-hidden');
+    root.classList.remove('anim-on');
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-in'));
+  };
+
+  const rescue = () => {
+    if (!document.body.classList.contains('is-ready')) showEverything();
+  };
+
+  setTimeout(rescue, 4000);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') rescue();
+  });
+  window.addEventListener('pageshow', rescue);
+}
 
 function initPreloader() {
   const preloader = document.getElementById('preloader');
@@ -21,6 +48,12 @@ function initPreloader() {
   };
 
   if (!preloader) {
+    showSite();
+    return;
+  }
+
+  if (document.visibilityState === 'hidden') {
+    preloader.classList.add('is-hidden');
     showSite();
     return;
   }
@@ -84,7 +117,7 @@ function initPreloader() {
   };
 
   requestAnimationFrame(tick);
-  setTimeout(finish, 8000);
+  setTimeout(finish, 3500);
 }
 
 function initHeader() {
