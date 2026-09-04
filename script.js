@@ -8,8 +8,74 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   initReveal();
   initForm();
+  initTheme();
+  initDiagonalCuts();
   initPhToggle();
 });
+
+function initTheme() {
+  const root = document.documentElement;
+  const buttons = [document.getElementById('themeBtn'), document.getElementById('themeBtnDrawer')].filter(Boolean);
+
+  let saved = null;
+  try {
+    saved = localStorage.getItem('atmos-theme');
+  } catch (e) {
+    saved = null;
+  }
+
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  let dark = saved ? saved === 'dark' : systemDark;
+
+  const apply = () => {
+    if (dark) {
+      root.setAttribute('data-theme', 'dark');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', dark ? '#17171A' : '#FAF7F2');
+    buttons.forEach(btn => {
+      btn.setAttribute('aria-pressed', String(dark));
+      btn.setAttribute('title', dark ? 'Светлая тема' : 'Тёмная тема');
+      const label = btn.querySelector('.theme-btn__label');
+      if (label) label.textContent = dark ? 'Светлая тема' : 'Тёмная тема';
+    });
+  };
+
+  apply();
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      dark = !dark;
+      apply();
+      try {
+        localStorage.setItem('atmos-theme', dark ? 'dark' : 'light');
+      } catch (e) {}
+    });
+  });
+}
+
+function initDiagonalCuts() {
+  const sections = Array.from(document.querySelectorAll('.section--dark'));
+  if (!sections.length) return;
+
+  const pick = () => 26 + Math.round(Math.random() * 30);
+
+  sections.forEach(section => {
+    const topSlope = pick();
+    const topRight = Math.random() < 0.5;
+    section.style.setProperty('--ctl', (topRight ? 0 : topSlope) + 'px');
+    section.style.setProperty('--ctr', (topRight ? topSlope : 0) + 'px');
+
+    if (section.id === 'process') {
+      const bottomSlope = pick();
+      const bottomRight = Math.random() < 0.5;
+      section.style.setProperty('--cbl', (bottomRight ? 0 : bottomSlope) + 'px');
+      section.style.setProperty('--cbr', (bottomRight ? bottomSlope : 0) + 'px');
+    }
+  });
+}
 
 function initSafetyNet() {
   const root = document.documentElement;
@@ -437,6 +503,12 @@ function initForm() {
 }
 
 function initPhToggle() {
+  document.addEventListener('keydown', e => {
+    if (e.altKey && (e.code === 'KeyP')) {
+      document.body.classList.toggle('show-ph');
+    }
+  });
+
   const btn = document.getElementById('phToggleBtn');
   if (!btn) return;
 
