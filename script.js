@@ -328,6 +328,7 @@ function initSeasideGallery() {
     const newAlt = activeThumb.dataset.alt;
 
     mainImg.src = newSrc;
+    if (activeThumb.dataset.srcset) mainImg.srcset = activeThumb.dataset.srcset;
     mainImg.alt = newAlt;
     card.dataset.full = newSrc;
 
