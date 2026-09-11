@@ -9,9 +9,86 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initForm();
   initTheme();
+  initSmoothAnchors();
   initDiagonalCuts();
   initPhToggle();
 });
+
+function initSmoothAnchors() {
+  const root = document.documentElement;
+  root.style.scrollBehavior = 'auto';
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const ease = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+  const offset = () => {
+    const header = document.querySelector('.header');
+    return (header ? header.offsetHeight : 0) + 14;
+  };
+
+  let running = null;
+
+  const glide = target => {
+    const start = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const end = Math.max(0, Math.min(max, target.getBoundingClientRect().top + start - offset()));
+    const dist = end - start;
+    if (Math.abs(dist) < 2) return;
+
+    const duration = reduced.matches
+      ? 300
+      : Math.min(1000, 340 + Math.abs(dist) * 0.32);
+
+    if (running) cancelAnimationFrame(running);
+    clearTimeout(glide.guard);
+    let began = null;
+    let done = false;
+
+    const step = now => {
+      if (began === null) began = now;
+      const p = Math.min(1, (now - began) / duration);
+      window.scrollTo(0, start + dist * ease(p));
+      if (p < 1) {
+        running = requestAnimationFrame(step);
+      } else {
+        running = null;
+        done = true;
+      }
+    };
+
+    running = requestAnimationFrame(step);
+
+    glide.guard = setTimeout(() => {
+      if (done) return;
+      if (running) cancelAnimationFrame(running);
+      running = null;
+      window.scrollTo(0, end);
+    }, duration + 400);
+  };
+
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link || link.getAttribute('href').length < 2) return;
+    const id = link.getAttribute('href');
+    let target = null;
+    try {
+      target = document.querySelector(id);
+    } catch (err) {
+      return;
+    }
+    if (!target) return;
+    e.preventDefault();
+    glide(target);
+    if (history.pushState) history.pushState(null, '', id);
+  });
+
+  window.addEventListener('wheel', () => {
+    if (running) {
+      cancelAnimationFrame(running);
+      running = null;
+    }
+  }, { passive: true });
+}
 
 function initTheme() {
   const root = document.documentElement;
