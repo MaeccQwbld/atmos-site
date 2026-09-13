@@ -162,24 +162,37 @@
       </div>
 
       <div class="cards-grid cards-grid--3 cards-grid--svc">
-        <article class="card card--expandable reveal">
-          <span class="card__num">01</span>
-          <h3 class="card__title">Разработка планировочного решения</h3>
-          <p class="card__desc">«Да что там, купим мебель и расставим!» — думают многие. А потом с пакетами в руках выясняют, что в коридоре места ровно на полшага. Вот тут-то и понимаешь: дизайн — это когда каждый сантиметр на счету!</p>
-          <div class="card__footer">
-            <span class="card__tag">Срок: —</span>
-            <span class="card__price">700 ₽/м²</span>
+        <article class="card reveal">
+          <span class="card__tier card__tier--single">Отдельная услуга</span>
+          <h3 class="card__title">Консультация по дизайнерскому решению</h3>
+          <div class="card__meta">
+            <span class="card__price">от 1000 ₽</span>
+            <span class="card__term">Срок: 1–2 дня</span>
           </div>
+          <p class="card__desc">Покупка квартиры часто сопровождается мечтами о её преображении. Возникает множество вопросов: какие цвета выбрать, как расставить мебель, какие элементы декора использовать? В голове крутятся идеи, но их сложно воплотить в жизнь. Мы подробно расскажем, что и как сделать, и предоставим текстовую версию плана, чтобы вы не забыли важные детали.</p>
+        </article>
+
+        <article class="card card--expandable reveal">
+          <span class="card__tier card__tier--min">Минимальный пакет</span>
+          <h3 class="card__title">Разработка планировочного решения</h3>
+          <div class="card__meta">
+            <span class="card__price">700 ₽/м²</span>
+            <span class="card__term">Срок: —</span>
+          </div>
+          <p class="card__desc">«Да что там, купим мебель и расставим!» — думают многие. А потом с пакетами в руках выясняют, что в коридоре места ровно на полшага. Вот тут-то и понимаешь: дизайн — это когда каждый сантиметр на счету!</p>
           <button class="svc-toggle" type="button" id="svcBtn1" aria-controls="svcPanel1" aria-expanded="false">
             <span class="svc-toggle__text">Что входит в услугу</span>
-            <span class="svc-toggle__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3 5.75 8 10.75l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="svc-toggle__side">
+              <span class="svc-toggle__count">5 пунктов</span>
+              <span class="svc-toggle__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3 5.75 8 10.75l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </span>
           </button>
         </article>
 
         <div class="svc-panel" id="svcPanel1" role="region" aria-labelledby="svcBtn1">
           <div class="svc-panel__inner">
             <div class="svc-panel__head">
-              <span class="svc-panel__num">01</span>
+              <span class="card__tier card__tier--min">Минимальный пакет</span>
               <p class="svc-panel__title">Разработка планировочного решения — что входит</p>
             </div>
             <ul class="svc-list">
@@ -192,34 +205,27 @@
           </div>
         </div>
 
-        <article class="card reveal">
-          <span class="card__num">02</span>
-          <h3 class="card__title">Консультация по дизайнерскому решению</h3>
-          <p class="card__desc">Покупка квартиры часто сопровождается мечтами о её преображении. Возникает множество вопросов: какие цвета выбрать, как расставить мебель, какие элементы декора использовать? В голове крутятся идеи, но их сложно воплотить в жизнь. Мы подробно расскажем, что и как сделать, и предоставим текстовую версию плана, чтобы вы не забыли важные детали.</p>
-          <div class="card__footer">
-            <span class="card__tag">Срок: 1–2 дня</span>
-            <span class="card__price">от 1000 ₽</span>
-          </div>
-        </article>
-
         <article class="card card--accent card--expandable reveal">
-          <span class="card__num">03</span>
+          <span class="card__tier card__tier--full">Полный пакет</span>
           <h3 class="card__title">Разработка дизайн-проекта</h3>
-          <p class="card__desc">Благоустройство квартиры часто вызывает вопросы: где разместить розетку, как провести электричество по стандартам, какую мебель подобрать к обоям и какой керамогранит выбрать? Мы готовы помочь вам с каждым из этих вопросов! Наши услуги включают: обмер квартиры, 3D-визуализацию, план электрики, схему сноса и возведения перегородок, а также расчёт необходимых материалов.</p>
-          <div class="card__footer">
-            <span class="card__tag">Срок: 7–25 рабочих дней</span>
+          <div class="card__meta">
             <span class="card__price">от 1500 ₽/м²</span>
+            <span class="card__term">Срок: 7–25 рабочих дней</span>
           </div>
+          <p class="card__desc">Благоустройство квартиры часто вызывает вопросы: где разместить розетку, как провести электричество по стандартам, какую мебель подобрать к обоям и какой керамогранит выбрать? Мы готовы помочь вам с каждым из этих вопросов! Наши услуги включают: обмер квартиры, 3D-визуализацию, план электрики, схему сноса и возведения перегородок, а также расчёт необходимых материалов.</p>
           <button class="svc-toggle" type="button" id="svcBtn3" aria-controls="svcPanel3" aria-expanded="false">
             <span class="svc-toggle__text">Что входит в услугу</span>
-            <span class="svc-toggle__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3 5.75 8 10.75l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="svc-toggle__side">
+              <span class="svc-toggle__count">20 пунктов</span>
+              <span class="svc-toggle__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3 5.75 8 10.75l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </span>
           </button>
         </article>
 
         <div class="svc-panel" id="svcPanel3" role="region" aria-labelledby="svcBtn3">
           <div class="svc-panel__inner">
             <div class="svc-panel__head">
-              <span class="svc-panel__num">03</span>
+              <span class="card__tier card__tier--full">Полный пакет</span>
               <p class="svc-panel__title">Разработка дизайн-проекта — что входит</p>
             </div>
             <ul class="svc-list">
