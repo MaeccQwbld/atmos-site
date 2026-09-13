@@ -1063,6 +1063,14 @@ ul, ol {
   border-bottom: 1px solid var(--border-light);
 }
 
+.card--accent .card__meta {
+  border-bottom-color: var(--white);
+}
+
+[data-theme="dark"] .card__meta {
+  border-bottom-color: var(--border);
+}
+
 .card__price {
   font-family: var(--font-serif);
   font-size: 1.4rem;
