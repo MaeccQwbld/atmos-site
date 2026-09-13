@@ -280,7 +280,7 @@ ul, ol {
   --ink-light: #B9B9C1;
   --muted: #9A9AA3;
   --border: #35353C;
-  --border-light: #2E2E34;
+  --border-light: #33333A;
   --wood-accent: #C9A46E;
   --wood-dark: #A8834E;
   --wood-text: #D8B583;
@@ -1064,10 +1064,10 @@ ul, ol {
 }
 
 .card--accent .card__meta {
-  border-bottom-color: var(--white);
+  border-bottom-color: var(--ink);
 }
 
-[data-theme="dark"] .card__meta {
+[data-theme="dark"] .card--accent .card__meta {
   border-bottom-color: var(--border);
 }
 
