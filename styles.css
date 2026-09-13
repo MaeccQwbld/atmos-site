@@ -1064,7 +1064,7 @@ ul, ol {
 }
 
 .card--accent .card__meta {
-  border-bottom-color: var(--ink);
+  border-bottom-color: rgba(34, 30, 27, 0.4);
 }
 
 [data-theme="dark"] .card--accent .card__meta {
