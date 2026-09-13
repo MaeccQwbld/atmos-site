@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initDrawer();
   initAccordion();
+  initServiceDetails();
   initSeasideGallery();
   initLightbox();
   initReveal();
@@ -383,6 +384,95 @@ function initAccordion() {
         closeItem(item);
       }
     });
+  });
+}
+
+function initServiceDetails() {
+  const triggers = Array.from(document.querySelectorAll('.svc-toggle'));
+  if (!triggers.length) return;
+
+  const groups = triggers.map(trigger => {
+    const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+    const card = trigger.closest('.card');
+    if (!panel || !card) return null;
+    return { trigger, panel, card, items: Array.from(panel.querySelectorAll('.svc-list__item')), timer: 0 };
+  }).filter(Boolean);
+
+  if (!groups.length) return;
+
+  const DURATION = 450;
+
+  const settle = group => {
+    if (group.panel.classList.contains('is-open')) {
+      group.panel.style.height = 'auto';
+    } else {
+      group.panel.classList.remove('is-mounted');
+      group.panel.style.height = '';
+    }
+  };
+
+  const open = group => {
+    if (group.panel.classList.contains('is-open')) return;
+
+    group.panel.classList.add('is-mounted');
+    void group.panel.offsetHeight;
+
+    group.items.forEach((item, i) => {
+      item.style.transitionDelay = (120 + Math.min(i, 14) * 28) + 'ms';
+    });
+
+    group.panel.classList.add('is-open');
+    group.card.classList.add('is-open');
+    group.trigger.setAttribute('aria-expanded', 'true');
+    group.panel.style.height = group.panel.scrollHeight + 'px';
+
+    clearTimeout(group.timer);
+    group.timer = setTimeout(() => settle(group), DURATION + 120);
+  };
+
+  const close = group => {
+    if (!group.panel.classList.contains('is-open')) return;
+
+    group.items.forEach(item => {
+      item.style.transitionDelay = '0ms';
+    });
+
+    group.panel.style.height = group.panel.scrollHeight + 'px';
+    void group.panel.offsetHeight;
+
+    group.panel.classList.remove('is-open');
+    group.card.classList.remove('is-open');
+    group.trigger.setAttribute('aria-expanded', 'false');
+    group.panel.style.height = '0px';
+
+    clearTimeout(group.timer);
+    group.timer = setTimeout(() => settle(group), DURATION + 120);
+  };
+
+  groups.forEach(group => {
+    group.panel.addEventListener('transitionend', e => {
+      if (e.propertyName !== 'height' || e.target !== group.panel) return;
+      clearTimeout(group.timer);
+      settle(group);
+    });
+
+    group.trigger.addEventListener('click', () => {
+      const willOpen = !group.panel.classList.contains('is-open');
+      groups.forEach(other => {
+        if (other !== group) close(other);
+      });
+      if (willOpen) open(group); else close(group);
+    });
+  });
+
+  let resizeTimer = 0;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      groups.forEach(group => {
+        if (group.panel.classList.contains('is-open')) group.panel.style.height = 'auto';
+      });
+    }, 150);
   });
 }
 

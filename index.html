@@ -161,16 +161,36 @@
         <p class="section-lead">Наши услуги — это не просто работа по техническому заданию, а продуманный путь от первого наброска до финального воплощения: мы учитываем ваши цели, особенности проекта и атмосферу, в которой хочется жить, а не проживать.</p>
       </div>
 
-      <div class="cards-grid cards-grid--3">
-        <article class="card reveal">
+      <div class="cards-grid cards-grid--3 cards-grid--svc">
+        <article class="card card--expandable reveal">
           <span class="card__num">01</span>
           <h3 class="card__title">Разработка планировочного решения</h3>
           <p class="card__desc">«Да что там, купим мебель и расставим!» — думают многие. А потом с пакетами в руках выясняют, что в коридоре места ровно на полшага. Вот тут-то и понимаешь: дизайн — это когда каждый сантиметр на счету!</p>
           <div class="card__footer">
             <span class="card__tag">Срок: —</span>
-            <span class="card__price">500 ₽/м²</span>
+            <span class="card__price">700 ₽/м²</span>
           </div>
+          <button class="svc-toggle" type="button" id="svcBtn1" aria-controls="svcPanel1" aria-expanded="false">
+            <span class="svc-toggle__text">Что входит в услугу</span>
+            <span class="svc-toggle__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3 5.75 8 10.75l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
         </article>
+
+        <div class="svc-panel" id="svcPanel1" role="region" aria-labelledby="svcBtn1">
+          <div class="svc-panel__inner">
+            <div class="svc-panel__head">
+              <span class="svc-panel__num">01</span>
+              <p class="svc-panel__title">Разработка планировочного решения — что входит</p>
+            </div>
+            <ul class="svc-list">
+              <li class="svc-list__item">Обмерный план</li>
+              <li class="svc-list__item">План с расстановкой мебели (2 варианта)</li>
+              <li class="svc-list__item">План демонтажа / монтажа — при необходимости</li>
+              <li class="svc-list__item">3D-визуализации</li>
+              <li class="svc-list__item">Смета мебели, освещения и отделочных материалов</li>
+            </ul>
+          </div>
+        </div>
 
         <article class="card reveal">
           <span class="card__num">02</span>
@@ -182,7 +202,7 @@
           </div>
         </article>
 
-        <article class="card card--accent reveal">
+        <article class="card card--accent card--expandable reveal">
           <span class="card__num">03</span>
           <h3 class="card__title">Разработка дизайн-проекта</h3>
           <p class="card__desc">Благоустройство квартиры часто вызывает вопросы: где разместить розетку, как провести электричество по стандартам, какую мебель подобрать к обоям и какой керамогранит выбрать? Мы готовы помочь вам с каждым из этих вопросов! Наши услуги включают: обмер квартиры, 3D-визуализацию, план электрики, схему сноса и возведения перегородок, а также расчёт необходимых материалов.</p>
@@ -190,7 +210,42 @@
             <span class="card__tag">Срок: 7–25 рабочих дней</span>
             <span class="card__price">от 1500 ₽/м²</span>
           </div>
+          <button class="svc-toggle" type="button" id="svcBtn3" aria-controls="svcPanel3" aria-expanded="false">
+            <span class="svc-toggle__text">Что входит в услугу</span>
+            <span class="svc-toggle__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3 5.75 8 10.75l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
         </article>
+
+        <div class="svc-panel" id="svcPanel3" role="region" aria-labelledby="svcBtn3">
+          <div class="svc-panel__inner">
+            <div class="svc-panel__head">
+              <span class="svc-panel__num">03</span>
+              <p class="svc-panel__title">Разработка дизайн-проекта — что входит</p>
+            </div>
+            <ul class="svc-list">
+              <li class="svc-list__item">Обмерный план</li>
+              <li class="svc-list__item">План демонтажа / монтажа / после перепланировки</li>
+              <li class="svc-list__item">План дверных проёмов</li>
+              <li class="svc-list__item">План с расстановкой мебели (2 варианта)</li>
+              <li class="svc-list__item">Спецификация мебели заводского производства</li>
+              <li class="svc-list__item">Чертежи заказной мебели</li>
+              <li class="svc-list__item">План пола и план потолка</li>
+              <li class="svc-list__item">План плинтусов</li>
+              <li class="svc-list__item">План карнизов</li>
+              <li class="svc-list__item">План освещения с размерами и привязками к выключателям</li>
+              <li class="svc-list__item">Спецификация осветительных приборов</li>
+              <li class="svc-list__item">План электрики</li>
+              <li class="svc-list__item">План сантехнического оборудования</li>
+              <li class="svc-list__item">Спецификация сантехники</li>
+              <li class="svc-list__item">План кондиционеров</li>
+              <li class="svc-list__item">План тёплого пола</li>
+              <li class="svc-list__item">План отделки стен</li>
+              <li class="svc-list__item">Развёртки по стенам</li>
+              <li class="svc-list__item">3D-визуализации</li>
+              <li class="svc-list__item">Смета мебели, освещения и отделочных материалов</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
