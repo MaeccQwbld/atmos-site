@@ -1491,6 +1491,13 @@ html:not(.js) .svc-panel {
   line-height: 1.7;
 }
 
+.about-text--slogan {
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  line-height: 1.4;
+  color: var(--wood-text);
+}
+
 .principles-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1799,7 +1806,7 @@ textarea.form-input {
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr 1fr;
   gap: 40px;
   margin-bottom: 48px;
 }
