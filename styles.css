@@ -1280,7 +1280,7 @@ html:not(.js) .svc-panel {
 
 .step-item {
   display: grid;
-  grid-template-columns: 70px 1fr 120px;
+  grid-template-columns: 70px 1fr 150px;
   gap: 24px;
   align-items: center;
   padding: 28px 32px;
