@@ -621,6 +621,8 @@ function initForm() {
   const form = document.getElementById('projectForm');
   if (!form) return;
 
+  const VK_URL = 'https://vk.ru/atmos.barnaul';
+
   const nameInput = document.getElementById('fName');
   const phoneInput = document.getElementById('fPhone');
   const consentInput = document.getElementById('fConsent');
@@ -662,10 +664,41 @@ function initForm() {
       return;
     }
 
-    // ТОЧКА ИНТЕГРАЦИИ ФОРМЫ
+    const data = new FormData(form);
+    const typeLabels = {
+      flat: 'Квартира',
+      house: 'Загородный дом',
+      commercial: 'Коммерческое помещение',
+      other: 'Другое'
+    };
 
-    showToast('Заявка успешно отправлена. Мы свяжемся с вами.');
-    form.reset();
+    const lines = [
+      'Заявка с сайта АТМОС',
+      'Имя: ' + nameInput.value.trim(),
+      'Контакт: ' + phoneInput.value.trim(),
+      'Тип объекта: ' + (typeLabels[data.get('type')] || '—')
+    ];
+
+    const area = String(data.get('area') || '').trim();
+    if (area) lines.push('Площадь: ' + area + ' м²');
+
+    const comment = String(data.get('comment') || '').trim();
+    if (comment) lines.push('Комментарий: ' + comment);
+
+    const text = lines.join('\n');
+
+    window.open(VK_URL, '_blank', 'noopener');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Заявка скопирована. Вставьте её в сообщение сообществу.');
+        form.reset();
+      }).catch(() => {
+        showToast('Скопировать не вышло. Позвоните: +7 (923) 643-38-50', 'warn');
+      });
+    } else {
+      showToast('Скопируйте данные вручную или позвоните: +7 (923) 643-38-50', 'warn');
+    }
   });
 }
 
