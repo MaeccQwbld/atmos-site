@@ -111,7 +111,7 @@ html.js .preloader {
 .brand-logo {
   display: block;
   width: 168px;
-  height: 72px;
+  height: 74px;
   background-image: url('images/logo.png');
   background-image: image-set(url('images/logo.webp') type('image/webp'), url('images/logo.png') type('image/png'));
   background-size: contain;
@@ -120,13 +120,13 @@ html.js .preloader {
 }
 
 .brand-logo--sm {
-  width: 128px;
-  height: 55px;
+  width: 129px;
+  height: 57px;
 }
 
 .brand-logo--lg {
   width: 232px;
-  height: 99px;
+  height: 102px;
   background-position: center;
 }
 
@@ -583,7 +583,7 @@ ul, ol {
 .brand-mark {
   display: block;
   width: 180px;
-  height: 35px;
+  height: 37px;
   background-image: url('images/logo-mark.png');
   background-image: image-set(url('images/logo-mark.webp') type('image/webp'), url('images/logo-mark.png') type('image/png'));
   background-size: contain;
