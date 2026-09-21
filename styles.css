@@ -1905,6 +1905,10 @@ textarea.form-input {
   max-width: 760px;
 }
 
+.legal-page .brand-logo {
+  margin-bottom: 30px;
+}
+
 .legal-page p {
   color: var(--ink-light);
   line-height: 1.7;
