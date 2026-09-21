@@ -8,6 +8,7 @@ cd "$(dirname "$0")"
 
 COPYFILE_DISABLE=1 tar --exclude='.htaccess' --exclude='.DS_Store' --exclude='._*' -czf - \
   index.html privacy.html 404.html styles.css script.js robots.txt sitemap.xml images \
+  $(ls yandex_*.html google*.html 2>/dev/null) \
   | ssh "$HOST" "
       rm -rf $DEST.new && mkdir -p $DEST.new &&
       tar -xzf - -C $DEST.new &&
