@@ -1,0 +1,24 @@
+[Unit]
+Description=Приём заявок с сайта atmos-barnaul.ru и отправка в Telegram
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/atmos-lead.env
+ExecStart=/usr/bin/python3 /opt/atmos-lead/lead.py
+Restart=always
+RestartSec=3
+User=www-data
+Group=www-data
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6
+MemoryMax=128M
+
+[Install]
+WantedBy=multi-user.target

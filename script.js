@@ -621,7 +621,7 @@ function initForm() {
   const form = document.getElementById('projectForm');
   if (!form) return;
 
-  const VK_URL = 'https://vk.ru/atmos.barnaul';
+  const submitBtn = form.querySelector('button[type="submit"]');
 
   const nameInput = document.getElementById('fName');
   const phoneInput = document.getElementById('fPhone');
@@ -665,40 +665,49 @@ function initForm() {
     }
 
     const data = new FormData(form);
-    const typeLabels = {
-      flat: 'Квартира',
-      house: 'Загородный дом',
-      commercial: 'Коммерческое помещение',
-      other: 'Другое'
+    const payload = {
+      name: nameInput.value.trim(),
+      contact: phoneInput.value.trim(),
+      type: String(data.get('type') || ''),
+      area: String(data.get('area') || '').trim(),
+      comment: String(data.get('comment') || '').trim(),
+      website: String(data.get('website') || '')
     };
 
-    const lines = [
-      'Заявка с сайта АТМОС',
-      'Имя: ' + nameInput.value.trim(),
-      'Контакт: ' + phoneInput.value.trim(),
-      'Тип объекта: ' + (typeLabels[data.get('type')] || '—')
-    ];
-
-    const area = String(data.get('area') || '').trim();
-    if (area) lines.push('Площадь: ' + area + ' м²');
-
-    const comment = String(data.get('comment') || '').trim();
-    if (comment) lines.push('Комментарий: ' + comment);
-
-    const text = lines.join('\n');
-
-    window.open(VK_URL, '_blank', 'noopener');
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Заявка скопирована. Вставьте её в сообщение сообществу.');
-        form.reset();
-      }).catch(() => {
-        showToast('Скопировать не вышло. Позвоните: +7 (923) 643-38-50', 'warn');
-      });
-    } else {
-      showToast('Скопируйте данные вручную или позвоните: +7 (923) 643-38-50', 'warn');
+    const label = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Отправляем…';
     }
+
+    const restore = () => {
+      if (!submitBtn) return;
+      submitBtn.disabled = false;
+      submitBtn.textContent = label;
+    };
+
+    const fallback = () => {
+      showToast('Не получилось отправить. Позвоните: +7 (923) 643-38-50 или напишите нам во ВКонтакте.', 'warn');
+    };
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(response => response.json().catch(() => ({ ok: false })))
+      .then(result => {
+        if (result && result.ok) {
+          showToast('Заявка отправлена. Свяжемся с вами в ближайшее время.');
+          form.reset();
+        } else if (result && result.error === 'too_many') {
+          showToast('Слишком много заявок подряд. Попробуйте позже или позвоните: +7 (923) 643-38-50', 'warn');
+        } else {
+          fallback();
+        }
+      })
+      .catch(fallback)
+      .finally(restore);
   });
 }
 

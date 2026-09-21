@@ -580,13 +580,18 @@
             <textarea class="form-input" id="fComment" name="comment" rows="3" placeholder="Пожелания к проекту"></textarea>
           </div>
 
+          <div class="form-trap" aria-hidden="true">
+            <label for="fSite">Не заполняйте это поле</label>
+            <input type="text" id="fSite" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
           <label class="consent-label" id="consentLabel">
             <input class="consent-checkbox" type="checkbox" id="fConsent" name="consent" required>
             <span>Согласен на обработку персональных данных и с <a href="privacy.html" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
           </label>
 
-          <button class="btn btn--primary btn--block" type="submit">Отправить во ВКонтакте</button>
-          <p class="form-hint">Заявка скопируется в буфер обмена, и откроется наше сообщество — останется вставить её в сообщение.</p>
+          <button class="btn btn--primary btn--block" type="submit">Отправить заявку</button>
+          <p class="form-hint">Ответим в течение рабочего дня. Можно просто позвонить: <a href="tel:+79236433850">+7 (923) 643-38-50</a>.</p>
         </form>
       </div>
     </div>

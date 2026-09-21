@@ -1708,6 +1708,14 @@ html:not(.js) .svc-panel {
   padding-top: 16px;
 }
 
+.form-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form-hint {
   margin-top: 12px;
   font-size: 0.81rem;
