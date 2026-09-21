@@ -282,20 +282,20 @@ ul, ol {
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --cream: #100B08;
-  --sand: #18110D;
-  --sand-dark: #241A14;
-  --white: #1E1612;
+  --cream: #160F0B;
+  --sand: #201711;
+  --sand-dark: #2B2018;
+  --white: #261C16;
   --ink: #F2EBE2;
   --ink-light: #C9BCAC;
   --muted: #A99A87;
-  --border: #3A2A21;
-  --border-light: #33251D;
+  --border: #433126;
+  --border-light: #3C2C22;
   --wood-accent: #C9A46E;
   --wood-dark: #B58F58;
   --wood-text: #DFBE8E;
   --wood-light: #E7D2AA;
-  --wood-deep: #0B0705;
+  --wood-deep: #100A07;
   --on-deep-title: #F6F0E7;
   --on-deep-text: #CBBDAB;
   --on-deep-accent: #DAB882;
@@ -311,19 +311,19 @@ ul, ol {
 }
 
 [data-theme="dark"] .header {
-  background-color: #18110D;
+  background-color: #201711;
   background-image: none;
-  border-bottom-color: #3A2A21;
+  border-bottom-color: #433126;
   box-shadow: inset 0 -3px 0 rgba(201, 164, 110, 0.28);
 }
 
 [data-theme="dark"] .header.is-stuck {
-  background-color: #130D0A;
+  background-color: #1A120D;
   box-shadow: inset 0 -3px 0 rgba(201, 164, 110, 0.34), 0 6px 18px rgba(12, 7, 3, 0.55);
 }
 
 [data-theme="dark"] .btn--primary {
-  color: #100B08;
+  color: #160F0B;
 }
 
 [data-theme="dark"] .btn--primary:hover {
@@ -573,6 +573,23 @@ ul, ol {
 
 .logo:hover .logo__slot {
   transform: rotate(5deg);
+}
+
+.brand-mark {
+  display: block;
+  width: 134px;
+  height: 26px;
+  background-image: url('images/logo-mark.png');
+  background-image: image-set(url('images/logo-mark.webp') type('image/webp'), url('images/logo-mark.png') type('image/png'));
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .brand-mark {
+  background-image: url('images/logo-mark-dark.png');
+  background-image: image-set(url('images/logo-mark-dark.webp') type('image/webp'), url('images/logo-mark-dark.png') type('image/png'));
 }
 
 .logo__name {
