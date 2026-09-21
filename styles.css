@@ -119,11 +119,6 @@ html.js .preloader {
   background-repeat: no-repeat;
 }
 
-.brand-logo--sm {
-  width: 129px;
-  height: 57px;
-}
-
 .brand-logo--lg {
   width: 232px;
   height: 102px;
@@ -578,6 +573,23 @@ ul, ol {
 
 .logo:hover .logo__slot {
   transform: rotate(5deg);
+}
+
+.brand-head {
+  display: block;
+  width: 146px;
+  height: 47px;
+  background-image: url('images/logo-head.png');
+  background-image: image-set(url('images/logo-head.webp') type('image/webp'), url('images/logo-head.png') type('image/png'));
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .brand-head {
+  background-image: url('images/logo-head-dark.png');
+  background-image: image-set(url('images/logo-head-dark.webp') type('image/webp'), url('images/logo-head-dark.png') type('image/png'));
 }
 
 .brand-mark {
