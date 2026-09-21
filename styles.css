@@ -119,6 +119,11 @@ html.js .preloader {
   background-repeat: no-repeat;
 }
 
+.brand-logo--sm {
+  width: 128px;
+  height: 55px;
+}
+
 .brand-logo--lg {
   width: 232px;
   height: 99px;
@@ -577,8 +582,8 @@ ul, ol {
 
 .brand-mark {
   display: block;
-  width: 134px;
-  height: 26px;
+  width: 180px;
+  height: 35px;
   background-image: url('images/logo-mark.png');
   background-image: image-set(url('images/logo-mark.webp') type('image/webp'), url('images/logo-mark.png') type('image/png'));
   background-size: contain;
