@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import json
 import os
+import random
+import threading
 import time
 import urllib.parse
 import urllib.request
@@ -8,14 +10,17 @@ from collections import deque
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 TOKEN = os.environ.get('TG_TOKEN', '')
-CHAT_ID = os.environ.get('TG_CHAT_ID', '')
+SEED_CHAT = os.environ.get('TG_CHAT_ID', '').strip()
 HOST = os.environ.get('LEAD_HOST', '127.0.0.1')
 PORT = int(os.environ.get('LEAD_PORT', '8099'))
+STATE_DIR = os.environ.get('STATE_DIRECTORY', '/var/lib/atmos-lead')
+STATE_PATH = os.path.join(STATE_DIR, 'state.json')
 
 MAX_BODY = 16 * 1024
 WINDOW = 15 * 60
 PER_IP = 5
 PER_ALL = 60
+CODE_TTL = 24 * 3600
 
 TYPES = {
     'flat': 'Квартира',
@@ -24,8 +29,173 @@ TYPES = {
     'other': 'Другое',
 }
 
+lock = threading.Lock()
+state = {'subs': [], 'codes': {}, 'offset': 0}
 hits = {}
 recent = deque()
+
+
+def load():
+    global state
+    try:
+        with open(STATE_PATH, encoding='utf-8') as f:
+            data = json.load(f)
+        state = {
+            'subs': [int(x) for x in data.get('subs', [])],
+            'codes': dict(data.get('codes', {})),
+            'offset': int(data.get('offset', 0)),
+        }
+    except Exception:
+        state = {'subs': [], 'codes': {}, 'offset': 0}
+    if SEED_CHAT and not state['subs']:
+        try:
+            state['subs'] = [int(SEED_CHAT)]
+        except ValueError:
+            pass
+    save()
+
+
+def save():
+    os.makedirs(STATE_DIR, exist_ok=True)
+    tmp = STATE_PATH + '.tmp'
+    with open(tmp, 'w', encoding='utf-8') as f:
+        json.dump(state, f, ensure_ascii=False)
+    os.replace(tmp, STATE_PATH)
+
+
+def api(method, params=None, timeout=15):
+    data = urllib.parse.urlencode(params or {}).encode('utf-8')
+    req = urllib.request.Request(
+        'https://api.telegram.org/bot%s/%s' % (TOKEN, method),
+        data=data,
+        headers={'Content-Type': 'application/x-www-form-urlencoded'},
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode('utf-8'))
+
+
+def tell(chat_id, text):
+    try:
+        return api('sendMessage', {
+            'chat_id': chat_id,
+            'text': text,
+            'disable_web_page_preview': 'true',
+        }).get('ok') is True
+    except urllib.error.HTTPError as err:
+        if err.code in (400, 403):
+            with lock:
+                if chat_id in state['subs']:
+                    state['subs'].remove(chat_id)
+                    save()
+            print('отписан недоступный чат %s' % chat_id, flush=True)
+        return False
+    except Exception as err:
+        print('ошибка telegram: %r' % (err,), flush=True)
+        return False
+
+
+def broadcast(text):
+    with lock:
+        targets = list(state['subs'])
+    if not targets:
+        return False
+    return any(tell(chat, text) for chat in targets)
+
+
+def new_code():
+    code = '%06d' % random.SystemRandom().randrange(1000000)
+    now = time.time()
+    with lock:
+        state['codes'] = {k: v for k, v in state['codes'].items() if v > now}
+        state['codes'][code] = now + CODE_TTL
+        save()
+    return code
+
+
+def redeem(code, chat_id):
+    now = time.time()
+    with lock:
+        state['codes'] = {k: v for k, v in state['codes'].items() if v > now}
+        if code not in state['codes']:
+            return False
+        del state['codes'][code]
+        if chat_id not in state['subs']:
+            state['subs'].append(chat_id)
+        save()
+    return True
+
+
+HELP = (
+    'Это бот студии «Атмос». Сюда приходят заявки с сайта atmos-barnaul.ru.\n\n'
+    'Чтобы получать их, нужен код доступа — попросите его у того, кому заявки '
+    'уже приходят, и отправьте сюда:\n/claim 123456\n\n'
+    '/invite — выдать код (для тех, кто уже подключён)\n'
+    '/stop — отключиться от заявок'
+)
+
+
+def handle(message):
+    chat = message.get('chat') or {}
+    chat_id = chat.get('id')
+    text = (message.get('text') or '').strip()
+    if chat_id is None or not text.startswith('/'):
+        return
+
+    parts = text.split()
+    cmd = parts[0].split('@')[0].lower()
+
+    with lock:
+        subscribed = chat_id in state['subs']
+
+    if cmd in ('/start', '/help'):
+        tell(chat_id, HELP if not subscribed else 'Заявки с сайта приходят сюда.\n\n/invite — выдать код доступа другому человеку\n/stop — отключиться')
+    elif cmd == '/claim':
+        if len(parts) < 2:
+            tell(chat_id, 'Отправьте код вместе с командой: /claim 123456')
+        elif subscribed:
+            tell(chat_id, 'Вы и так получаете заявки.')
+        elif redeem(parts[1].strip(), chat_id):
+            tell(chat_id, 'Готово. Заявки с сайта теперь приходят сюда.')
+            broadcast('К заявкам подключился: %s' % (chat.get('first_name') or chat_id))
+        else:
+            tell(chat_id, 'Код не подошёл: он либо уже использован, либо просрочен. Попросите новый.')
+    elif cmd == '/invite':
+        if not subscribed:
+            tell(chat_id, 'Выдавать коды может только тот, кому уже приходят заявки.')
+        else:
+            code = new_code()
+            tell(chat_id, 'Код доступа: %s\n\nДействует сутки, сработает один раз. Отправьте его человеку — пусть напишет боту:\n/claim %s' % (code, code))
+    elif cmd == '/stop':
+        if not subscribed:
+            tell(chat_id, 'Вам и так ничего не приходит.')
+        else:
+            with lock:
+                state['subs'].remove(chat_id)
+                save()
+            tell(chat_id, 'Отключено. Чтобы вернуться, понадобится новый код.')
+    else:
+        tell(chat_id, HELP)
+
+
+def poll():
+    while True:
+        try:
+            with lock:
+                offset = state['offset']
+            data = api('getUpdates', {'offset': offset, 'timeout': 50}, timeout=70)
+            for upd in data.get('result', []):
+                with lock:
+                    state['offset'] = upd['update_id'] + 1
+                    save()
+                msg = upd.get('message')
+                if msg:
+                    try:
+                        handle(msg)
+                    except Exception as err:
+                        print('ошибка обработки: %r' % (err,), flush=True)
+        except Exception as err:
+            print('ошибка опроса: %r' % (err,), flush=True)
+            time.sleep(5)
 
 
 def allowed(ip):
@@ -53,21 +223,6 @@ def clean(value, limit):
     return text[:limit]
 
 
-def send(text):
-    data = urllib.parse.urlencode({
-        'chat_id': CHAT_ID,
-        'text': text,
-        'disable_web_page_preview': 'true',
-    }).encode('utf-8')
-    req = urllib.request.Request(
-        'https://api.telegram.org/bot%s/sendMessage' % TOKEN,
-        data=data,
-        headers={'Content-Type': 'application/x-www-form-urlencoded'},
-    )
-    with urllib.request.urlopen(req, timeout=12) as resp:
-        return json.loads(resp.read().decode('utf-8')).get('ok') is True
-
-
 class Handler(BaseHTTPRequestHandler):
     server_version = 'atmos-lead'
     sys_version = ''
@@ -89,7 +244,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/api/lead/health':
-            self.reply(200, {'ok': True, 'configured': bool(TOKEN and CHAT_ID)})
+            with lock:
+                count = len(state['subs'])
+            self.reply(200, {'ok': True, 'configured': bool(TOKEN) and count > 0, 'subs': count})
         else:
             self.reply(404, {'ok': False})
 
@@ -142,22 +299,17 @@ class Handler(BaseHTTPRequestHandler):
         if comment:
             lines += ['', 'Комментарий:', comment]
 
-        if not TOKEN or not CHAT_ID:
-            print('НЕ НАСТРОЕН: нет TG_TOKEN или TG_CHAT_ID', flush=True)
+        if not TOKEN:
             self.reply(503, {'ok': False, 'error': 'not_configured'})
             return
 
-        try:
-            ok = send('\n'.join(lines))
-        except Exception as err:
-            print('ошибка telegram: %r' % (err,), flush=True)
-            ok = False
-
-        if ok:
+        if broadcast('\n'.join(lines)):
             self.reply(200, {'ok': True})
         else:
             self.reply(502, {'ok': False, 'error': 'telegram'})
 
 
 if __name__ == '__main__':
+    load()
+    threading.Thread(target=poll, daemon=True).start()
     ThreadingHTTPServer((HOST, PORT), Handler).serve_forever()
